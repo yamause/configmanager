@@ -1,0 +1,9 @@
+- name: sample_value
+  description: A sample value
+  type: string
+  default: "Hello, World!"
+
+- name: sample_value_2
+  description: A sample value
+  type: int
+  default: 42
