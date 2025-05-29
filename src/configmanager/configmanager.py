@@ -164,10 +164,11 @@ class ConfigManager:
         new_data["value"] = value
 
         new_param = Parameter(**new_data)
-        self._config.append(new_param)  # Add the new parameter with updated value
+        # Add the new parameter with updated value
+        self._config.append(new_param)
         self._config.remove(param)  # Remove the existing old parameter
 
-    def get_cli_args(self, args: List[str] = None):
+    def get_cli_args(self, args: List[str] | None = None):
         """Get configuration values from command line arguments."""
         parser = argparse.ArgumentParser()
 
