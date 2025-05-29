@@ -1,10 +1,12 @@
+import argparse
 import os
 import threading
-from typing import Any, List, Optional, Literal
-from configmanager.source import ConfigSource, CliConfigSource
+from typing import Any, List, Literal, Optional
+
 import yaml
-from pydantic import Field, BaseModel, field_validator, ValidationInfo
-import argparse
+from pydantic import BaseModel, Field, ValidationInfo, field_validator
+
+from configmanager.source import CliConfigSource, ConfigSource
 
 
 class Parameter(BaseModel):

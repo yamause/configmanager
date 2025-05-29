@@ -1,9 +1,10 @@
+import argparse
+import os
 from abc import ABC, abstractmethod
 from typing import Any, Dict
-import os
+
 import yaml
 from dotenv import load_dotenv
-import argparse
 
 
 class ConfigSource(ABC):

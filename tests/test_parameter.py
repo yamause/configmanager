@@ -1,8 +1,10 @@
+import logging
+
 import pytest
+from pydantic import ValidationError
+
 # from configmanager import ConfigManager
 from configmanager import Parameter
-from pydantic import ValidationError
-import logging
 
 logger = logging.getLogger(__name__)
 

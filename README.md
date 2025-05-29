@@ -92,7 +92,8 @@ python your_script.py --item bar
 ```python
 from configmanager import ConfigManager
 
-ConfigManager.get_cli_args()  # Config source at command args
+manager = ConfigManager("basic.yml")
+manager.get_cli_args()  # Config source at command args
 ```
 
 ### FileConfigSource

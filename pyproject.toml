@@ -15,7 +15,11 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
-dependencies = []
+dependencies = [
+    "PyYAML",
+    "pydantic",
+    "python-dotenv"
+]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
