@@ -152,13 +152,27 @@ class ConfigManager:
 
         return param.value
 
-    def set(self, key: str, value: Any):
-        """Set a configuration value."""
+    def set(self, key: str, value: Any) -> bool:
+        """
+        Set a configuration value for a given key.
+
+        This method updates the value of an existing configuration parameter
+        identified by the provided key. If the key does not exist, the method
+        returns False.
+
+        Args:
+            key (str): The name of the configuration parameter to update.
+            value (Any): The new value to set for the configuration parameter.
+
+        Returns:
+            bool: True if the configuration value was successfully updated,
+                  False if the key was not found.
+        """
         key = key.lower()
         try:
             param = [param for param in self._config if param.name == key][0]
         except IndexError:
-            raise KeyError(f"Configuration key '{key}' not found.")
+            return False
 
         new_data = param.model_dump()
         new_data["value"] = value
@@ -167,6 +181,7 @@ class ConfigManager:
         # Add the new parameter with updated value
         self._config.append(new_param)
         self._config.remove(param)  # Remove the existing old parameter
+        return True
 
     def get_cli_args(self, args: List[str] | None = None):
         """Get configuration values from command line arguments."""
