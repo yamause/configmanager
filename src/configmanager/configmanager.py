@@ -183,7 +183,7 @@ class ConfigManager:
         self._config.remove(param)  # Remove the existing old parameter
         return True
 
-    def get_cli_args(self, args: List[str] | None = None):
+    def get_cli_args(self):
         """Get configuration values from command line arguments."""
         parser = argparse.ArgumentParser()
 
@@ -195,9 +195,11 @@ class ConfigManager:
         }
 
         for param in self._config:
-            parser.add_argument(f"--{param.name}", type=type_map[param.type], default=param.value,
+            # The default is "Ellipsis" to distinguish between the entered "None" and no entered value.
+            parser.add_argument(f"--{param.name}", type=type_map[param.type], default=Ellipsis,
                                 help=param.description)
 
-        parsed_args = parser.parse_args(args)
-        srouce = CliConfigSource(parsed_args)
+        parsed_args = {k: v for k, v in vars(parser.parse_args()).items() if not isinstance(v, type(Ellipsis))}
+
+        srouce = CliConfigSource(argparse.Namespace(**parsed_args))
         self.add_source(srouce)
